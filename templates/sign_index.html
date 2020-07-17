@@ -24,15 +24,19 @@
         <!-- 签到功能-->
         <div class="page-header" style="padding-top: 80px">
             <div id="navbar" class="navbar-collapse collapse">
-                <form action="navber-form" method="post" action="/sign_index_action/{{ event.id }}">
+                <form class="navbar-form" method="post" action="/sign_index_action/{{ event.id }}/">
+                    <!-- 防止csrf报错-->
+                    {% csrf_token %}
                     <div class="from group">
-                        <input name=phone type="text" placeholder="输入手机号" class="form-control">
+                        <input name="phone" type="text" placeholder="输入手机号" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-success">签到</button>
                     <font color="red">
                         <br>{{ hint }}
                         <br>{{ guest.realname }}
                         <br>{{ guest.phone }}
+                        <br>{{sign_num}}
+                        <br>{{guest_num}}
                     </font>
                 </form>
             </div>
